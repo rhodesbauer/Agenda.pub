@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b5a9448f3f5b4a14bcbaff7de4838000" Name="Diagram1">
+        <EntityTypeShape EntityType="FinnancialModel.relAlertUser" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.relEntriesDescription" Width="1.5" PointX="8" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.relEntriesScope" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.relScopeGroup" Width="1.5" PointX="8" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblAccess" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblAlert" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblEntries" Width="1.5" PointX="5.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblEntryDescription" Width="1.5" PointX="5.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblGroup" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblScope" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinnancialModel.tblUser" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="FinnancialModel.FK_relAlertUser_tblAlert" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relAlertUser_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relEntriesDescription_tblEntries" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relEntriesDescription_tblEntryDescription" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relEntriesScope_tblEntries" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relEntriesScope_tblScope" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relScopeGroup_tblGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_relScopeGroup_tblScope" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_tblAccess_tblGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="FinnancialModel.FK_tblAccess_tblUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

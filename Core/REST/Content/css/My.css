@@ -1,0 +1,8 @@
+﻿.hidden {
+    visibility: hidden;
+}
+
+.redBorder {
+    border-style: solid;
+    border-color: red;
+}

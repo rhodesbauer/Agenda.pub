@@ -1,0 +1,42 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="REST.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="REST.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="UserRelatedIntegrationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="REST.Tests.UserRelatedIntegrationTests.CheckIfAnUserCanBeAdded" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CheckIfAnUserCanBeAdded" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="REST.Tests.UserRelatedIntegrationTests.CheckIfAnUserCanBeModified" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CheckIfAnUserCanBeModified" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="REST.Tests.UserRelatedIntegrationTests.CheckIfAnUserCanBeDeleted" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CheckIfAnUserCanBeDeleted" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

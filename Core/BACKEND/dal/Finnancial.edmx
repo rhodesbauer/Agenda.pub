@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FinnancialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="relAlertUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="alertID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="relEntriesDescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="descriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="entryID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="relEntriesScope">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="scopeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="entryID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="relScopeGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="scopeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="groupID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="isReadAndWrite" Type="int" Nullable="false" />
+          <Property Name="userID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="groupID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAlert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="textAlert" Type="text" Nullable="false" />
+          <Property Name="dateTimeAlert" Type="datetime" Nullable="false" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEntries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isNegative" Type="bit" Nullable="false" />
+          <Property Name="Value" Type="money" Nullable="false" />
+          <Property Name="dateValue" Type="date" Nullable="false" />
+          <Property Name="dateClearing" Type="date" Nullable="false" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEntryDescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblScope">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Scope" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="dateAdded" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+          <Property Name="nameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="25" />
+          <Property Name="Provider" Type="text" />
+          <Property Name="Session" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Token" Type="text" />
+          <Property Name="dateIssued" Type="datetime" Nullable="false" />
+          <Property Name="dateCreated" Type="date" Nullable="false" />
+          <Property Name="dateModified" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_relAlertUser_tblAlert">
+          <End Role="tblAlert" Type="Self.tblAlert" Multiplicity="1" />
+          <End Role="relAlertUser" Type="Self.relAlertUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlert">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relAlertUser">
+              <PropertyRef Name="alertID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relAlertUser_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="relAlertUser" Type="Self.relAlertUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relAlertUser">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesDescription_tblEntries">
+          <End Role="tblEntries" Type="Self.tblEntries" Multiplicity="1" />
+          <End Role="relEntriesDescription" Type="Self.relEntriesDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesDescription">
+              <PropertyRef Name="entryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesDescription_tblEntryDescription">
+          <End Role="tblEntryDescription" Type="Self.tblEntryDescription" Multiplicity="1" />
+          <End Role="relEntriesDescription" Type="Self.relEntriesDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntryDescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesDescription">
+              <PropertyRef Name="descriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesScope_tblEntries">
+          <End Role="tblEntries" Type="Self.tblEntries" Multiplicity="1" />
+          <End Role="relEntriesScope" Type="Self.relEntriesScope" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesScope">
+              <PropertyRef Name="entryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesScope_tblScope">
+          <End Role="tblScope" Type="Self.tblScope" Multiplicity="1" />
+          <End Role="relEntriesScope" Type="Self.relEntriesScope" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScope">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesScope">
+              <PropertyRef Name="scopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relScopeGroup_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="relScopeGroup" Type="Self.relScopeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relScopeGroup">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relScopeGroup_tblScope">
+          <End Role="tblScope" Type="Self.tblScope" Multiplicity="1" />
+          <End Role="relScopeGroup" Type="Self.relScopeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScope">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relScopeGroup">
+              <PropertyRef Name="scopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAccess_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="tblAccess" Type="Self.tblAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAccess">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAccess_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblAccess" Type="Self.tblAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAccess">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinnancialModelStoreContainer">
+          <EntitySet Name="relAlertUser" EntityType="Self.relAlertUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relEntriesDescription" EntityType="Self.relEntriesDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relEntriesScope" EntityType="Self.relEntriesScope" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relScopeGroup" EntityType="Self.relScopeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAccess" EntityType="Self.tblAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAlert" EntityType="Self.tblAlert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEntries" EntityType="Self.tblEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEntryDescription" EntityType="Self.tblEntryDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblScope" EntityType="Self.tblScope" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_relAlertUser_tblAlert" Association="Self.FK_relAlertUser_tblAlert">
+            <End Role="tblAlert" EntitySet="tblAlert" />
+            <End Role="relAlertUser" EntitySet="relAlertUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relAlertUser_tblUser" Association="Self.FK_relAlertUser_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="relAlertUser" EntitySet="relAlertUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesDescription_tblEntries" Association="Self.FK_relEntriesDescription_tblEntries">
+            <End Role="tblEntries" EntitySet="tblEntries" />
+            <End Role="relEntriesDescription" EntitySet="relEntriesDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesDescription_tblEntryDescription" Association="Self.FK_relEntriesDescription_tblEntryDescription">
+            <End Role="tblEntryDescription" EntitySet="tblEntryDescription" />
+            <End Role="relEntriesDescription" EntitySet="relEntriesDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesScope_tblEntries" Association="Self.FK_relEntriesScope_tblEntries">
+            <End Role="tblEntries" EntitySet="tblEntries" />
+            <End Role="relEntriesScope" EntitySet="relEntriesScope" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesScope_tblScope" Association="Self.FK_relEntriesScope_tblScope">
+            <End Role="tblScope" EntitySet="tblScope" />
+            <End Role="relEntriesScope" EntitySet="relEntriesScope" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relScopeGroup_tblGroup" Association="Self.FK_relScopeGroup_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="relScopeGroup" EntitySet="relScopeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relScopeGroup_tblScope" Association="Self.FK_relScopeGroup_tblScope">
+            <End Role="tblScope" EntitySet="tblScope" />
+            <End Role="relScopeGroup" EntitySet="relScopeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAccess_tblGroup" Association="Self.FK_tblAccess_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblAccess" EntitySet="tblAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAccess_tblUser" Association="Self.FK_tblAccess_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblAccess" EntitySet="tblAccess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinnancialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="relAlertUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="alertID" Type="Guid" Nullable="false" />
+          <Property Name="userID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblAlert" Relationship="Self.FK_relAlertUser_tblAlert" FromRole="relAlertUser" ToRole="tblAlert" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_relAlertUser_tblUser" FromRole="relAlertUser" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="relEntriesDescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="descriptionID" Type="Guid" Nullable="false" />
+          <Property Name="entryID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblEntries" Relationship="Self.FK_relEntriesDescription_tblEntries" FromRole="relEntriesDescription" ToRole="tblEntries" />
+          <NavigationProperty Name="tblEntryDescription" Relationship="Self.FK_relEntriesDescription_tblEntryDescription" FromRole="relEntriesDescription" ToRole="tblEntryDescription" />
+        </EntityType>
+        <EntityType Name="relEntriesScope">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="scopeID" Type="Guid" Nullable="false" />
+          <Property Name="entryID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblEntries" Relationship="Self.FK_relEntriesScope_tblEntries" FromRole="relEntriesScope" ToRole="tblEntries" />
+          <NavigationProperty Name="tblScope" Relationship="Self.FK_relEntriesScope_tblScope" FromRole="relEntriesScope" ToRole="tblScope" />
+        </EntityType>
+        <EntityType Name="relScopeGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="scopeID" Type="Guid" Nullable="false" />
+          <Property Name="groupID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblGroup" Relationship="Self.FK_relScopeGroup_tblGroup" FromRole="relScopeGroup" ToRole="tblGroup" />
+          <NavigationProperty Name="tblScope" Relationship="Self.FK_relScopeGroup_tblScope" FromRole="relScopeGroup" ToRole="tblScope" />
+        </EntityType>
+        <EntityType Name="tblAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="isReadAndWrite" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Guid" Nullable="false" />
+          <Property Name="groupID" Type="Guid" Nullable="false" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblGroup" Relationship="Self.FK_tblAccess_tblGroup" FromRole="tblAccess" ToRole="tblGroup" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblAccess_tblUser" FromRole="tblAccess" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblAlert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="textAlert" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateTimeAlert" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="relAlertUser" Relationship="Self.FK_relAlertUser_tblAlert" FromRole="tblAlert" ToRole="relAlertUser" />
+        </EntityType>
+        <EntityType Name="tblEntries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isNegative" Type="Boolean" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="dateValue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateClearing" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="relEntriesDescription" Relationship="Self.FK_relEntriesDescription_tblEntries" FromRole="tblEntries" ToRole="relEntriesDescription" />
+          <NavigationProperty Name="relEntriesScope" Relationship="Self.FK_relEntriesScope_tblEntries" FromRole="tblEntries" ToRole="relEntriesScope" />
+        </EntityType>
+        <EntityType Name="tblEntryDescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="relEntriesDescription" Relationship="Self.FK_relEntriesDescription_tblEntryDescription" FromRole="tblEntryDescription" ToRole="relEntriesDescription" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="relScopeGroup" Relationship="Self.FK_relScopeGroup_tblGroup" FromRole="tblGroup" ToRole="relScopeGroup" />
+          <NavigationProperty Name="tblAccess" Relationship="Self.FK_tblAccess_tblGroup" FromRole="tblGroup" ToRole="tblAccess" />
+        </EntityType>
+        <EntityType Name="tblScope">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Scope" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="relEntriesScope" Relationship="Self.FK_relEntriesScope_tblScope" FromRole="tblScope" ToRole="relEntriesScope" />
+          <NavigationProperty Name="relScopeGroup" Relationship="Self.FK_relScopeGroup_tblScope" FromRole="tblScope" ToRole="relScopeGroup" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Provider" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Session" Type="Guid" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateIssued" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="relAlertUser" Relationship="Self.FK_relAlertUser_tblUser" FromRole="tblUser" ToRole="relAlertUser" />
+          <NavigationProperty Name="tblAccess" Relationship="Self.FK_tblAccess_tblUser" FromRole="tblUser" ToRole="tblAccess" />
+        </EntityType>
+        <Association Name="FK_relAlertUser_tblAlert">
+          <End Role="tblAlert" Type="Self.tblAlert" Multiplicity="1" />
+          <End Role="relAlertUser" Type="Self.relAlertUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlert">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relAlertUser">
+              <PropertyRef Name="alertID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relAlertUser_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="relAlertUser" Type="Self.relAlertUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relAlertUser">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesDescription_tblEntries">
+          <End Role="tblEntries" Type="Self.tblEntries" Multiplicity="1" />
+          <End Role="relEntriesDescription" Type="Self.relEntriesDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesDescription">
+              <PropertyRef Name="entryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesDescription_tblEntryDescription">
+          <End Role="tblEntryDescription" Type="Self.tblEntryDescription" Multiplicity="1" />
+          <End Role="relEntriesDescription" Type="Self.relEntriesDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntryDescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesDescription">
+              <PropertyRef Name="descriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesScope_tblEntries">
+          <End Role="tblEntries" Type="Self.tblEntries" Multiplicity="1" />
+          <End Role="relEntriesScope" Type="Self.relEntriesScope" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEntries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesScope">
+              <PropertyRef Name="entryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relEntriesScope_tblScope">
+          <End Role="tblScope" Type="Self.tblScope" Multiplicity="1" />
+          <End Role="relEntriesScope" Type="Self.relEntriesScope" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScope">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relEntriesScope">
+              <PropertyRef Name="scopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relScopeGroup_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="relScopeGroup" Type="Self.relScopeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relScopeGroup">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relScopeGroup_tblScope">
+          <End Role="tblScope" Type="Self.tblScope" Multiplicity="1" />
+          <End Role="relScopeGroup" Type="Self.relScopeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScope">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="relScopeGroup">
+              <PropertyRef Name="scopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAccess_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="tblAccess" Type="Self.tblAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAccess">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAccess_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblAccess" Type="Self.tblAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAccess">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="relAlertUser" EntityType="Self.relAlertUser" />
+          <EntitySet Name="relEntriesDescription" EntityType="Self.relEntriesDescription" />
+          <EntitySet Name="relEntriesScope" EntityType="Self.relEntriesScope" />
+          <EntitySet Name="relScopeGroup" EntityType="Self.relScopeGroup" />
+          <EntitySet Name="tblAccess" EntityType="Self.tblAccess" />
+          <EntitySet Name="tblAlert" EntityType="Self.tblAlert" />
+          <EntitySet Name="tblEntries" EntityType="Self.tblEntries" />
+          <EntitySet Name="tblEntryDescription" EntityType="Self.tblEntryDescription" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" />
+          <EntitySet Name="tblScope" EntityType="Self.tblScope" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_relAlertUser_tblAlert" Association="Self.FK_relAlertUser_tblAlert">
+            <End Role="tblAlert" EntitySet="tblAlert" />
+            <End Role="relAlertUser" EntitySet="relAlertUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relAlertUser_tblUser" Association="Self.FK_relAlertUser_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="relAlertUser" EntitySet="relAlertUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesDescription_tblEntries" Association="Self.FK_relEntriesDescription_tblEntries">
+            <End Role="tblEntries" EntitySet="tblEntries" />
+            <End Role="relEntriesDescription" EntitySet="relEntriesDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesDescription_tblEntryDescription" Association="Self.FK_relEntriesDescription_tblEntryDescription">
+            <End Role="tblEntryDescription" EntitySet="tblEntryDescription" />
+            <End Role="relEntriesDescription" EntitySet="relEntriesDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesScope_tblEntries" Association="Self.FK_relEntriesScope_tblEntries">
+            <End Role="tblEntries" EntitySet="tblEntries" />
+            <End Role="relEntriesScope" EntitySet="relEntriesScope" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relEntriesScope_tblScope" Association="Self.FK_relEntriesScope_tblScope">
+            <End Role="tblScope" EntitySet="tblScope" />
+            <End Role="relEntriesScope" EntitySet="relEntriesScope" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relScopeGroup_tblGroup" Association="Self.FK_relScopeGroup_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="relScopeGroup" EntitySet="relScopeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relScopeGroup_tblScope" Association="Self.FK_relScopeGroup_tblScope">
+            <End Role="tblScope" EntitySet="tblScope" />
+            <End Role="relScopeGroup" EntitySet="relScopeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAccess_tblGroup" Association="Self.FK_tblAccess_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblAccess" EntitySet="tblAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAccess_tblUser" Association="Self.FK_tblAccess_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblAccess" EntitySet="tblAccess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FinnancialModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="relAlertUser">
+            <EntityTypeMapping TypeName="FinnancialModel.relAlertUser">
+              <MappingFragment StoreEntitySet="relAlertUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="alertID" ColumnName="alertID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relEntriesDescription">
+            <EntityTypeMapping TypeName="FinnancialModel.relEntriesDescription">
+              <MappingFragment StoreEntitySet="relEntriesDescription">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="descriptionID" ColumnName="descriptionID" />
+                <ScalarProperty Name="entryID" ColumnName="entryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relEntriesScope">
+            <EntityTypeMapping TypeName="FinnancialModel.relEntriesScope">
+              <MappingFragment StoreEntitySet="relEntriesScope">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="scopeID" ColumnName="scopeID" />
+                <ScalarProperty Name="entryID" ColumnName="entryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relScopeGroup">
+            <EntityTypeMapping TypeName="FinnancialModel.relScopeGroup">
+              <MappingFragment StoreEntitySet="relScopeGroup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="scopeID" ColumnName="scopeID" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAccess">
+            <EntityTypeMapping TypeName="FinnancialModel.tblAccess">
+              <MappingFragment StoreEntitySet="tblAccess">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="isReadAndWrite" ColumnName="isReadAndWrite" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlert">
+            <EntityTypeMapping TypeName="FinnancialModel.tblAlert">
+              <MappingFragment StoreEntitySet="tblAlert">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="textAlert" ColumnName="textAlert" />
+                <ScalarProperty Name="dateTimeAlert" ColumnName="dateTimeAlert" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEntries">
+            <EntityTypeMapping TypeName="FinnancialModel.tblEntries">
+              <MappingFragment StoreEntitySet="tblEntries">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="isNegative" ColumnName="isNegative" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="dateValue" ColumnName="dateValue" />
+                <ScalarProperty Name="dateClearing" ColumnName="dateClearing" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEntryDescription">
+            <EntityTypeMapping TypeName="FinnancialModel.tblEntryDescription">
+              <MappingFragment StoreEntitySet="tblEntryDescription">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroup">
+            <EntityTypeMapping TypeName="FinnancialModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblScope">
+            <EntityTypeMapping TypeName="FinnancialModel.tblScope">
+              <MappingFragment StoreEntitySet="tblScope">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="FinnancialModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="dateIssued" ColumnName="dateIssued" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
